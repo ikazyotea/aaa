@@ -15,8 +15,10 @@ class TestAaa(unittest.TestCase):
         """Test that main() prints 'aaa'"""
         captured_output = StringIO()
         sys.stdout = captured_output
-        main()
-        sys.stdout = sys.__stdout__
+        try:
+            main()
+        finally:
+            sys.stdout = sys.__stdout__
         self.assertEqual(captured_output.getvalue().strip(), "aaa")
 
 
